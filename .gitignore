@@ -171,3 +171,6 @@ bundles/
 vendor/pkg/
 pyenv
 Vagrantfile
+Dockerfile
+docker-compose.yml
+.env
