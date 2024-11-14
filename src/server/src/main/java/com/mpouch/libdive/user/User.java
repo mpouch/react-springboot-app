@@ -1,7 +1,7 @@
 package com.mpouch.libdive.user;
 
 import com.mpouch.libdive.security.Role;
-import com.mpouch.libdive.security.Status;
+import com.mpouch.libdive.security.UserStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -35,7 +35,7 @@ public class User {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id")
-    private Status status;
+    private UserStatus userStatus;
 
     @PrePersist
     protected void onCreate() {
@@ -55,13 +55,13 @@ public class User {
             String username,
             String password,
             Role role,
-            Status status
+            UserStatus userStatus
     ) {
         this.email = email;
         this.username = username;
         this.password = password;
         this.role = role;
-        this.status = status;
+        this.userStatus = userStatus;
     }
 
 
@@ -95,8 +95,8 @@ public class User {
         return role;
     }
 
-    public Status getStatus() {
-        return status;
+    public UserStatus getStatus() {
+        return userStatus;
     }
 
 
@@ -122,13 +122,13 @@ public class User {
         this.role = role;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
     }
 
     @Override
     public String toString() {
-        return "User{id=" + id + ", username='" + username + "', email='" + email + "', role='" + role + "', status='" + status + "'}";
+        return "User{id=" + id + ", username='" + username + "', email='" + email + "', role='" + role + "', status='" + userStatus + "'}";
     }
 
 }

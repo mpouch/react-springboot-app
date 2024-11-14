@@ -3,8 +3,8 @@ package com.mpouch.libdive.security;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "status")
-public class Status {
+@Table(name = "user_status")
+public class UserStatus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,9 +13,9 @@ public class Status {
     @Column(nullable = false, unique = true)
     private String name;
 
-    protected Status() {}
+    protected UserStatus() {}
 
-    public Status(String name) {
+    public UserStatus(String name) {
         this.name = name;
     }
 
