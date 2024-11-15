@@ -11,7 +11,7 @@ public class Library {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "library_id")
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne
@@ -23,8 +23,15 @@ public class Library {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    public Library() {
-        this.createdAt = LocalDateTime.now();
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
+    protected Library() {}
+
+    public Library(User user) {
+        this.user = user;
     }
 
     // Getters
