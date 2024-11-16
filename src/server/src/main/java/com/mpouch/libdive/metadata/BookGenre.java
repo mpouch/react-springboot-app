@@ -1,5 +1,6 @@
 package com.mpouch.libdive.metadata;
 
+import com.mpouch.libdive.book.Book;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,13 +12,19 @@ public class BookGenre {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "book_id", nullable = false)
+    private Book book;
 
-    protected BookGenre () {}
+    @ManyToOne
+    @JoinColumn(name = "genre_id", nullable = false)
+    private Genre genre;
 
-    public BookGenre(String name) {
-        this.name = name;
+    protected BookGenre() {}
+
+    public BookGenre(Book book, Genre genre) {
+        this.book = book;
+        this.genre = genre;
     }
 
     // Getters
@@ -26,13 +33,21 @@ public class BookGenre {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public Book getBook() {
+        return book;
+    }
+
+    public Genre getGenre() {
+        return genre;
     }
 
     // Setters
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }
