@@ -1,9 +1,12 @@
 package com.mpouch.libdive.library;
 
+import com.mpouch.libdive.book.LibraryBook;
 import com.mpouch.libdive.user.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "library")
@@ -14,11 +17,13 @@ public class Library {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false, updatable = false)
     private User user;
 
-    // Create library book FK here
+    @OneToMany
+    @JoinColumn(name = "library_book_id")
+    private Set<LibraryBook> libraryBooks = new HashSet<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -42,6 +47,10 @@ public class Library {
 
     public User getUser() {
         return user;
+    }
+
+    public Set<LibraryBook> getLibraryBooks() {
+        return libraryBooks;
     }
 
     public LocalDateTime getCreatedAt() {

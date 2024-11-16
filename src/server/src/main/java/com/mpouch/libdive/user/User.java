@@ -1,5 +1,6 @@
 package com.mpouch.libdive.user;
 
+import com.mpouch.libdive.library.Library;
 import com.mpouch.libdive.security.Role;
 import com.mpouch.libdive.security.UserStatus;
 import jakarta.persistence.*;
@@ -37,6 +38,9 @@ public class User {
     @JoinColumn(name = "status_id")
     private UserStatus userStatus;
 
+    @OneToOne(mappedBy = "user")
+    private Library library;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
@@ -55,13 +59,15 @@ public class User {
             String username,
             String password,
             Role role,
-            UserStatus userStatus
+            UserStatus userStatus,
+            Library library
     ) {
         this.email = email;
         this.username = username;
         this.password = password;
         this.role = role;
         this.userStatus = userStatus;
+        this.library = library;
     }
 
 
