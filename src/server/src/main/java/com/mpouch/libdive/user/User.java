@@ -101,8 +101,12 @@ public class User {
         return role;
     }
 
-    public UserStatus getStatus() {
+    public UserStatus getUserStatus() {
         return userStatus;
+    }
+
+    public Library getLibrary() {
+        return library;
     }
 
 
@@ -128,8 +132,12 @@ public class User {
         this.role = role;
     }
 
-    public void setStatus(UserStatus userStatus) {
+    public void setUserStatus(UserStatus userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
     }
 
     @Override
