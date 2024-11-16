@@ -35,8 +35,10 @@ public class Library {
 
     protected Library() {}
 
-    public Library(User user) {
+    public Library(User user, Set<LibraryBook> libraryBooks, LocalDateTime createdAt) {
         this.user = user;
+        this.libraryBooks = libraryBooks;
+        this.createdAt = createdAt;
     }
 
     // Getters
