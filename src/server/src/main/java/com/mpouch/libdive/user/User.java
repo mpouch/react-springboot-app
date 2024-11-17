@@ -1,5 +1,6 @@
 package com.mpouch.libdive.user;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.mpouch.libdive.library.Library;
 import com.mpouch.libdive.security.Role;
 import com.mpouch.libdive.security.UserStatus;
@@ -38,6 +39,7 @@ public class User {
     @JoinColumn(name = "status_id")
     private UserStatus userStatus;
 
+    @JsonManagedReference
     @OneToOne(mappedBy = "user")
     private Library library;
 

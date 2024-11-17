@@ -1,8 +1,12 @@
 package com.mpouch.libdive.user;
 
+import com.mpouch.libdive.library.Library;
+import com.mpouch.libdive.library.LibraryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,10 +14,12 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final LibraryRepository libraryRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, LibraryRepository libraryRepository) {
         this.userRepository = userRepository;
+        this.libraryRepository = libraryRepository;
     }
 
     // Get all users
@@ -23,7 +29,14 @@ public class UserService {
 
     // Create user
     public User createUser(User user) {
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+
+        // Create user library
+        Library newLibrary = new Library(user, new HashSet<>(), LocalDateTime.now());
+        user.setLibrary(newLibrary);
+        libraryRepository.save(newLibrary);
+
+        return savedUser;
     }
 
     // Find user by ID

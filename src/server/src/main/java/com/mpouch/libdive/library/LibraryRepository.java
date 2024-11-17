@@ -1,7 +1,10 @@
 package com.mpouch.libdive.library;
 
+import com.mpouch.libdive.book.LibraryBook;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface LibraryRepository extends JpaRepository<Library, Long> {
+import java.util.List;
 
+public interface LibraryRepository extends JpaRepository<Library, Long> {
+    Library findByUserId(Long userId);
 }

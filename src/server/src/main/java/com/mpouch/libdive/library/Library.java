@@ -1,5 +1,6 @@
 package com.mpouch.libdive.library;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.mpouch.libdive.book.LibraryBook;
 import com.mpouch.libdive.user.User;
 import jakarta.persistence.*;
@@ -17,6 +18,7 @@ public class Library {
     @Column(name = "id")
     private Long id;
 
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false, updatable = false)
     private User user;
