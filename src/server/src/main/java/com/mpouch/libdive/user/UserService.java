@@ -30,6 +30,11 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    // Find user by username
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     // Update user
     public User updateUser(Long id, User userDetails) {
         Optional<User> userOptional = userRepository.findById(id);
