@@ -33,7 +33,7 @@ public class UserService {
 
         // Create user library
         Library newLibrary = new Library(user, new HashSet<>(), LocalDateTime.now());
-        user.setLibrary(newLibrary);
+        savedUser.setLibrary(newLibrary);
         libraryRepository.save(newLibrary);
 
         return savedUser;

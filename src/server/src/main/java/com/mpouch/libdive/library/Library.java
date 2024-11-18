@@ -61,4 +61,18 @@ public class Library {
         return createdAt;
     }
 
+    // Setters
+
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setLibraryBooks(Set<LibraryBook> libraryBooks) {
+        this.libraryBooks = libraryBooks;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }

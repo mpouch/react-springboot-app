@@ -40,7 +40,7 @@ public class User {
     private UserStatus userStatus;
 
     @JsonManagedReference
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Library library;
 
     @PrePersist
@@ -140,6 +140,7 @@ public class User {
 
     public void setLibrary(Library library) {
         this.library = library;
+        library.setUser(this);
     }
 
     @Override
